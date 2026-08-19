@@ -166,7 +166,6 @@ function renderSession(sid, title, projectName, agent, model, created, updated, 
     lastRole = role;
   }
   L.push("---");
-  L.push(`_Exported by chat-history sync on ${fmtTs(Date.now())}._`);
   L.push("");
   return L.join("\n");
 }
@@ -221,7 +220,6 @@ function main() {
   R.push(`Complete, auto-synced conversation history from opencode.\n`);
   R.push(`- **Sessions exported:** ${summary.length}`);
   R.push(`- **Total messages:** ${totalMsgs}`);
-  R.push(`- **Last sync:** ${fmtTs(Date.now())}`);
   R.push("");
   R.push("## Layout");
   R.push("");

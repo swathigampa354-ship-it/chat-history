@@ -3,8 +3,8 @@
 - **Session:** `ses_fe861c848ffexbhz3zIMLLv1HK`
 - **Project:** /
 - **Agent:** build · **Model:** opencode/deepseek-v4-flash-free (medium)
-- **Started:** 2026-08-19 06:54:00 · **Updated:** 2026-08-19 07:47:52
-- **Messages:** 91
+- **Started:** 2026-08-19 06:54:00 · **Updated:** 2026-08-19 07:48:38
+- **Messages:** 94
 
 ---
 
@@ -3573,7 +3573,7 @@ launched, pid=
 Daemon is running (PID 24393). Let me verify it actually syncs and pushes on its own, and
 
 <details open>
-<summary><code>bash</code> <small>· running</small></summary>
+<summary><code>bash</code> <small>· completed · exit 0</small></summary>
 
 <small>Verify daemon self-syncs after interval</small>
 
@@ -3585,7 +3585,98 @@ Daemon is running (PID 24393). Let me verify it actually syncs and pushes on its
 }
 ```
 
+```
+=== daemon log ===
+scripts/daemon.sh: line 16: bash: command not found
+scripts/daemon.sh: line 16: bash: command not found
+scripts/daemon.sh: line 16: bash: command not found
+scripts/daemon.sh: line 16: bash: command not found
+scripts/daemon.sh: line 16: bash: command not found
+scripts/daemon.sh: line 16: bash: command not found
+scripts/daemon.sh: line 16: bash: command not found
+[2026-08-19 07:47:48] daemon started (interval=20s)
+pushed: 02:17:54
+pushed: 02:18:19
+=== still running? ===
+24393 bash /data/data/com.termux/files/home/chat-history/scripts/daemon.sh
+
+```
+
+</details>
+
+## 🤖 Assistant
+
+<details>
+<summary><small>reasoning</small></summary>
+
+The daemon is running and pushing every 20s (the "pushed" lines). But it's pushing even when there are no changes? sync.sh only commits/pushes if `git diff --quiet HEAD` fails. But it pushed twice. That means git diff detected changes each time. Why? Because each export run updates transcripts with "Last sync" timestamp and the session's "updated" time and the "_Exported by chat-history sync on <timestamp>_" footer — so every export run regenerates files with a fresh timestamp → git diff always shows changes → push every 20s. That's causing constant commits/churn.
+
+Also the daemon.log shows old "bash: command not found" lines at top — stale from before; the new daemon started at 07:47:48 with pushes. Good, the new daemon works.
+
+But the constant churn is wasteful (a new commit every 20s). And the transcripts "Updated" reflects last message time; but the footer `_Exported by ... on <now>_` changes every run. I should make export deterministic so it doesn't change unless the DB actually changed. 
+
+Fix: remove the per-run export timestamp footer, OR only commit when there are real content changes. Better: make the footer not include a changing timestamp, OR have sync.sh use the DB's actual max time_updated. Simplest: remove the `_Exported by... now_` footer line. The transcripts would then be stable unless session content changes. But the "Last sync" in README also changes every run. I could remove that too, or keep README.idempotent. Let me remove both timestamps that change every run:
+- transcript footer `_Exported by chat-history sync on ${now}._`
+- README "Last sync" line
+
+Let me update export.js to not embed current time in output (keep it deterministic). The session "Updated" field uses s.time_updated which is stable. Good.
+
+After removing, export becomes idempotent → git diff quiet unless DB changed → only pushes when real new messages.
+
+Let me also handle the stale old-commit issue. And the boot script uses setsid -f.
+
+Let me edit export.js.
+
+</details>
+
+Daemon auto-syncs and pushes, but it's committing every 20s because I stamp a fresh timestamp on each export. Let me make the export deterministic (only change when the
+
+<details open>
+<summary><code>edit</code> <small>· completed</small></summary>
+
+```js
+{
+  "filePath": "/data/data/com.termux/files/home/chat-history/scripts/export.js",
+  "newString": "L.push(\"---\");\n  L.push(\"\");\n  return L.join(\"\\n\");",
+  "oldString": "L.push(\"---\");\n  L.push(`_Exported by chat-history sync on ${fmtTs(Date.now())}._`);\n  L.push(\"\");\n  return L.join(\"\\n\");"
+}
+```
+
+</details>
+
+## 🤖 Assistant
+
+<details open>
+<summary><code>edit</code> <small>· completed</small></summary>
+
+```js
+{
+  "filePath": "/data/data/com.termux/files/home/chat-history/scripts/export.js",
+  "newString": "R.push(`Complete, auto-synced conversation history from opencode.\\n`);\n  R.push(`- **Sessions exported:** ${summary.length}`);\n  R.push(`- **Total messages:** ${totalMsgs}`);\n  R.push(\"\");",
+  "oldString": "R.push(`Complete, auto-synced conversation history from opencode.\\n`);\n  R.push(`- **Sessions exported:** ${summary.length}`);\n  R.push(`- **Total messages:** ${totalMsgs}`);\n  R.push(`- **Last sync:** ${fmtTs(Date.now())}`);\n  R.push(\"\");"
+}
+```
+
+</details>
+
+## 🤖 Assistant
+
+<details>
+<summary><small>reasoning</small></summary>
+
+Now export should be deterministic. Let me regenerate once to remove the footer/last-sync from existing files, commit that, then let the daemon settle. Let me run export, check git diff doesn't keep changing.
+
+</details>
+
+
+
+<details open>
+<summary><code>bash</code> <small>· pending</small></summary>
+
+```js
+{}
+```
+
 </details>
 
 ---
-_Exported by chat-history sync on 2026-08-19 07:48:16._

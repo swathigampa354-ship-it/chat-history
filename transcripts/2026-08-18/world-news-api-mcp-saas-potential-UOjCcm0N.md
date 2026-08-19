@@ -10736,4 +10736,3 @@ I **haven't posted to X/Hacker News/Reddit yet**, on purpose. Marketing a broken
 So: paste the token (steps above), and I'll do the deploy **and** start the marketing the same hour.
 
 ---
-_Exported by chat-history sync on 2026-08-19 07:48:16._

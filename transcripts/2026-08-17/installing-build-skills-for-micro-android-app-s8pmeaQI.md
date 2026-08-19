@@ -7184,4 +7184,3 @@ Fixed. Both sites live and working:
 - Touch device hover guards
 
 ---
-_Exported by chat-history sync on 2026-08-19 07:48:15._
