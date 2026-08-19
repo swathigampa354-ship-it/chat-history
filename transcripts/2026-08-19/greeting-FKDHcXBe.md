@@ -3,7 +3,7 @@
 - **Session:** `ses_fe8362e17ffeGEmLpFFKDHcXBe`
 - **Project:** /
 - **Agent:** build · **Model:** opencode/mimo-v2.5-free (medium)
-- **Started:** 2026-08-19 07:41:37 · **Updated:** 2026-08-19 07:56:39
+- **Started:** 2026-08-19 07:41:37 · **Updated:** 2026-08-19 07:56:54
 - **Messages:** 12
 
 ---
@@ -256,5 +256,37 @@ Now let me check your GitHub repo:
 
 ## 🤖 Assistant
 
+<details>
+<summary><small>reasoning</small></summary>
+
+The user wants me to check the GitHub repo. I have the information now. Let me provide a concise summary.
+
+</details>
+
+Here's what I found:
+
+---
+
+### GitHub Repo: **future-face**
+**FACE AHEAD** — meet the face you're building. YouCam aging + skin intelligence hackathon entry.
+
+- **Live demo:** https://swathigampa354-ship-it.github.io/future-face/
+- **Status:** 4 commits, MIT license, 0 stars/forks
+- **Stack:** Vite + TypeScript, 4 YouCam APIs (aging, skin analysis, skin tone, Fitzpatrick)
+- **Features:** Upload selfie → age 12→70 → 14-concern skin report → habit recommendations → share card
+- **Tests:** 33 passing
+- **Docs:** PRD, Architecture, Orchestration, Honesty contract
+- **Deploy:** GitHub Pages via Actions workflow
+
+---
+
+### Your 20 Stitch Projects (summary)
+- **Skin/AI-related:** Premium Skin Report Dashboard, Glow AI Landing Page V1, Glow AI Skin Intelligence (x2)
+- **Clones:** Jesse Zhou Portfolio, Kickbacks.ai, Skills.sh Frontend, UI/UX pixel-perfect, Clone this
+- **Landing pages:** Startup Data Waitlist, AI Job-Swipe Waitlist
+- **Design systems:** Minimalist, Token-Driven
+- **Other:** Fix and Track, Go Development Suite, Glassmorphic Sound Therapy, Product/Service Listing, Extracted text from usesprout.com, New project, (untitled)
+
+Your GitHub repo (**future-face**) aligns closely with your Stitch skin/AI projects (especially the Premium Skin Report Dashboard and Glow AI projects). Want me to dive deeper into any specific project or the repo?
 
 ---
