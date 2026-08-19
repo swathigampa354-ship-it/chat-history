@@ -146,4 +146,4 @@ Supermemory is connected.
 - **Memory scope:** unified project container; recall mode per-turn reasoned; capture at session end only.
 
 ---
-_Exported by chat-history sync on 2026-08-19 07:47:51._
+_Exported by chat-history sync on 2026-08-19 07:48:16._
