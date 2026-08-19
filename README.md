@@ -2,8 +2,8 @@
 
 Complete, auto-synced conversation history from opencode.
 
-- **Sessions exported:** 11
-- **Total messages:** 1218
+- **Sessions exported:** 12
+- **Total messages:** 1223
 
 ## Layout
 
@@ -18,7 +18,8 @@ scripts/               exporter + sync tooling
 
 | Date | Session | Project | Agent / Model | Messages | File |
 |---|---|---|---|---|---|
-| 2026-08-19 | Greeting | / | build / opencode/mimo-v2.5-free (medium) | 7 | [link](transcripts/2026-08-19/greeting-FKDHcXBe.md) |
+| 2026-08-19 | List all Stitch projects (@explore subagent) | / | explore / opencode/mimo-v2.5-free (medium) | 2 | [link](transcripts/2026-08-19/list-all-stitch-projects-explore-subagent-lQvxEZBt.md) |
+| 2026-08-19 | Greeting | / | build / opencode/mimo-v2.5-free (medium) | 10 | [link](transcripts/2026-08-19/greeting-FKDHcXBe.md) |
 | 2026-08-19 | Extract project history | / | build / opencode/deepseek-v4-flash-free (medium) | 97 | [link](transcripts/2026-08-19/extract-project-history-IMLLv1HK.md) |
 | 2026-08-19 | Greeting | / | build / opencode/nemotron-3-ultra-free (medium) | 34 | [link](transcripts/2026-08-19/greeting-Y7txHoEN.md) |
 | 2026-08-18 | World news API MCP SaaS potential | / | build / opencode/deepseek-v4-flash-free (medium) | 291 | [link](transcripts/2026-08-18/world-news-api-mcp-saas-potential-UOjCcm0N.md) |
