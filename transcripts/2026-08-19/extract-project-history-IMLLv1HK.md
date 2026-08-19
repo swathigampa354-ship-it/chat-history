@@ -3668,13 +3668,19 @@ Now export should be deterministic. Let me regenerate once to remove the footer/
 
 </details>
 
-
+Now regenerate once to finalize the stable format, commit, and confirm id
 
 <details open>
-<summary><code>bash</code> <small>· pending</small></summary>
+<summary><code>bash</code> <small>· running</small></summary>
+
+<small>Commit stable format, verify idempotency</small>
+
 
 ```js
-{}
+{
+  "command": "cd ~/chat-history && node scripts/export.js && git add -A && git commit -q -m \"chat-history: deterministic export; add boot autostart and daemon service\" && git push -q origin main 2>&1 | tail -2; echo \"=== idempotency check (run twice, compare) ===\"; cd ~ && node ~/chat-history/scripts/export.js && git -C ~/chat-history diff --quiet HEAD && echo \"IDEMPOTENT (no diff after re-export)\" || echo \"STILL CHURNING\"",
+  "description": "Commit stable format, verify idempotency"
+}
 ```
 
 </details>
