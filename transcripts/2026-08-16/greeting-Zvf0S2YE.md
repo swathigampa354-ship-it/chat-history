@@ -6662,4 +6662,4 @@ So installing it here would earn nothing and risk nothing breaking — not worth
 Realistic path forward on Termux: keep **IdleDev** running (native opencode plugin), or set up **Trillboards** (`npx @trillboards/cli` — works anywhere Node does, pays India via RazorpayX). Want me to set up Trillboards?
 
 ---
-_Exported by chat-history sync on 2026-08-19 07:36:34._
+_Exported by chat-history sync on 2026-08-19 07:47:49._
